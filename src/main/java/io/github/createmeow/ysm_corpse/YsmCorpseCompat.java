@@ -20,7 +20,7 @@ import java.util.function.Supplier;
  */
 @Mod(YsmCorpseCompat.MOD_ID)
 public final class YsmCorpseCompat {
-    public static final String MOD_ID = "ysm_corpse";
+    public static final String MOD_ID = "yes_corpse_model";
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(Registries.ENTITY_TYPE, MOD_ID);
