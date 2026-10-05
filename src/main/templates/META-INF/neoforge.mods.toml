@@ -29,12 +29,6 @@ description='''
 Makes corpses show the dead player's Yes Steve Model appearance.
 '''
 
-[[mixins]]
-config="${mod_id}.mixins.json"
-
-#[[accessTransformers]]
-#file="META-INF/accesstransformer.cfg"
-
 [[dependencies.${mod_id}]] #optional
     modId="neoforge" #mandatory
     type="required" #mandatory

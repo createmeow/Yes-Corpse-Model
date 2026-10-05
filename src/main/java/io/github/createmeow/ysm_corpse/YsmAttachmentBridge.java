@@ -626,14 +626,10 @@ public final class YsmAttachmentBridge {
             note = "src=err:" + t.getClass().getSimpleName();
         }
         if (jars.isEmpty()) {
-            try {
-                java.nio.file.Path mods = net.neoforged.fml.loading.FMLPaths.MODSDIR.get();
-                try (java.util.stream.Stream<java.nio.file.Path> stream = java.nio.file.Files.list(mods)) {
-                    stream.filter(p -> p.toString().endsWith(".jar")).forEach(p -> jars.add(p.toFile()));
-                }
-            } catch (Throwable t) {
-                note += " modsdir=err:" + t.getClass().getSimpleName();
-            }
+            // 类来源拿不到时直接放弃——不再遍历整个 mods 目录，
+            // 避免渲染线程扫到其他 mod 的 jar 触发其类初始化。
+            // 实测类来源（YSM jar 的 union:/E:/...%23xxx!/）截断 # 后能成功命中。
+            note += " no-jar-source";
         }
         for (java.io.File jar : jars) {
             if (scanJarForRegistry(jar, pkg, origin.getClassLoader())) {
